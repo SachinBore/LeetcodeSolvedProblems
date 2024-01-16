@@ -8,7 +8,7 @@ public:
                 digits[i]++;
                 return digits;
             }
-            else digits[i] = 0;
+            digits[i] = 0;
         }
         vector<int> ans(n+1,0);
         ans[0] = 1;
