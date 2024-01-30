@@ -2,20 +2,12 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         
-        map<int, bool> mp;
+        int sum = 0;
         int n = nums.size();
         for(int i=0; i<n; i++) {
-            mp[nums[i]] = true;
+            sum += nums[i];
         }
 
-        int ans;
-        for(int i=0; i<=n; i++) {
-            if(mp[i] == false) {
-                ans = i;
-                break;
-            }
-        }
-
-        return ans;
+        return (n*(n+1)/2) - sum;
     }
 };
