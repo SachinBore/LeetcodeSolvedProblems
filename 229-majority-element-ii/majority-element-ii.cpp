@@ -14,7 +14,7 @@ public:
 
 		if(res.size() == 2) break;
 	}
-
+    sort(res.begin(), res.end());
 	return res;
     }
 };
