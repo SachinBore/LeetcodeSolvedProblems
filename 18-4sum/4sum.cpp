@@ -17,7 +17,7 @@ public:
 					st.insert(tmp);
 				}
 
-				hashset.insert((long long)arr[k]);
+				hashset.insert(arr[k]);
 			}
 		}
 	}
