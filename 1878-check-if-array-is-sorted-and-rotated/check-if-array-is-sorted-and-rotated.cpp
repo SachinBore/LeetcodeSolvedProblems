@@ -1,14 +1,14 @@
 class Solution {
 public:
     bool check(vector<int>& arr) {
-        int change = 0;
         int n = arr.size();
-        for(int i=1; i<n; i++) {
-            if(arr[i-1] > arr[i]) change++;
+        int change = 0;
+        for(int i=0; i<n-1; i++) {
+            if(arr[i] > arr[i+1]) change++;
         }
-        if(arr[n-1] > arr[0]) change++;
+        if(arr[0] < arr[n-1]) change++;
 
         if(change <= 1) return true;
-        return false;
+        else return false;
     }
 };
