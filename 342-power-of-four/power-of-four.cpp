@@ -1,9 +1,9 @@
 class Solution {
 public:
     bool isPowerOfFour(int n) {
-        if(n==1) return true;
-        if(n==0) return false;
-        if(n%4!=0) return false;
-        return isPowerOfFour(n/4);
+        // using bit masking
+        if(n<=0) return false;
+        int mask = 0b01010101010101010101010101010101;
+        return (n&(n-1)) == 0 && (n|mask) == mask;
     }
 };
