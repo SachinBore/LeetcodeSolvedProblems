@@ -1,20 +1,23 @@
 class Solution {
 public:
-    vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> ans;
+    vector<int> generateRow(int row) {
+        vector<int> rowans;
         int res = 1;
-        for(int r=1; r<=numRows; r++) {
-            res = 1;
-            vector<int> tmp;
-            tmp.push_back(res);
-            for(int c=1; c<r; c++) {
-                res = res*(r - c);
-                res = res/c;
-                tmp.push_back(res);
-            }
-            ans.push_back(tmp);
+        rowans.push_back(res);
+        for(int i=1; i<row; i++) {
+            res =  res*(row-i)/i;
+            rowans.push_back(res);
         }
 
-        return ans;
+        return rowans;
+    }
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> triangle;
+
+        for(int i=1; i<=numRows; i++) {
+            triangle.push_back(generateRow(i));
+        }
+
+        return triangle;
     }
 };
