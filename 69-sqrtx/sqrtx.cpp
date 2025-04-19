@@ -1,15 +1,14 @@
 class Solution {
 public:
-    bool check(int i, int x) {
-        return 1ll*i*i <= x;
-    }
-
     int mySqrt(int x) {
-        int ans = 0;
-        for(int i=1; i<=x; i++) {
-            if(check(i, x)) {
-                ans = i;
-            } else break;
+        long long left=0, right=x;
+        int ans;
+        while(left<=right) {
+            long long mid = left + (right-left)/2;
+            if(mid*mid <= x) {
+                ans = mid;
+                left = mid+1;
+            } else right = mid-1;
         }
 
         return ans;
