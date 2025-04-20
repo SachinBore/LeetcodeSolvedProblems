@@ -5,20 +5,21 @@ public:
 
         int ans = 0;
         for(int i=0; i<n; i++) {
-
-            map<int, int> mp;
-            for(int j=i+1; j<n; j++) {
-                
-                if(nums[j] - nums[i] != 2*diff) {
-                    mp[nums[j]] = 1;
+            int left = i+1, right = n-1;
+            while(left < right) {
+                if(nums[left] - nums[i] != diff) {
+                    left++;
                     continue;
                 }
 
-                if(mp.find(nums[j] - diff) != mp.end()) {
-                    ans++;
+                if(nums[left] + diff != nums[right]) {
+                    right--;
+                    continue;
                 }
 
-                mp[nums[j]] = 1;
+                ans++;
+                left++;
+                right--;
             }
         }
 
