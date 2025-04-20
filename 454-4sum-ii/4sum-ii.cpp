@@ -4,6 +4,11 @@ public:
                      vector<int>& nums4) {
         int n = nums1.size();
 
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        sort(nums3.begin(), nums3.end());
+        sort(nums4.begin(), nums4.end());
+
         map<long long, int> mp;
         for(int i=0; i<n; i++) {
             for(int j=0; j<n; j++) {
