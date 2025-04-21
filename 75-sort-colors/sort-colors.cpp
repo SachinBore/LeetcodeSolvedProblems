@@ -1,31 +1,18 @@
 class Solution {
 public:
-    void sortColors(vector<int>& arr) {
-    
-        // using 3 pointers approach, 
-        // < left is 0s
-        // left to mid-1 is 1s
-        // mid to high-1 is our given array
-        // high to n-1 is 2s
+    void sortColors(vector<int>& nums) {
+        int n = nums.size();
+        int zeros=0, ones=0, twos=0;
+        for(int i=0; i<n; i++) {
+            if(nums[i] == 0) zeros++;
+            else if(nums[i] == 1) ones++;
+            else twos++;
+        }
 
-        int n = arr.size();
-        int left = 0;
-	    int mid = 0;
-	    int right = n - 1;
-
-	    while (mid <= right) {
-		    if (arr[mid] == 0) {
-			    swap(arr[left], arr[mid]);
-			    mid++;
-			    left++;
-		    } else if (arr[mid] == 1) {
-			    mid++;
-		    } else {
-			    swap(arr[right], arr[mid]);
-			    right--;
-		    }  
-	    }
-        
-        
+        for(int i=0; i<n; i++) {
+            if(i<zeros) nums[i] = 0;
+            else if(i<zeros+ones) nums[i]=1;
+            else nums[i]=2;
+        }
     }
 };
