@@ -2,7 +2,7 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        int maxi = INT_MIN;
+        int maxi = 0;
         int curr_mini = prices[0];
 
         for(int i=0; i<n-1; i++) {
@@ -15,6 +15,8 @@ public:
             }
         }
         
-        return maxi == INT_MIN ? 0 : maxi;
+        return maxi;
     }
+    // TC : O(n)
+    // SC : O(1)
 };
