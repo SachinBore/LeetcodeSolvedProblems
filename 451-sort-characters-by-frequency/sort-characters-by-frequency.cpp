@@ -1,30 +1,27 @@
 class Solution {
 public:
-    static bool compare(pair<char, int> p1, pair<char, int> p2) {
-        return p1.second > p2.second;
-    }
-
     string frequencySort(string s) {
         int n = s.size();
-        vector<pair<char, int>> vp;
+
         map<char, int> mp;
-        for(int i=0; i<n; i++) {
-            mp[s[i]]++;
+        for(auto ch : s) mp[ch]++;
+
+        vector<vector<char>> bucket(n+1);
+        for(auto [ch, cnt] : mp) {
+            bucket[cnt].push_back(ch);
         }
 
-        for(auto it : mp) {
-            vp.push_back({it.first, it.second});
-        }
-
-        sort(vp.begin(), vp.end(), compare);
-
-        string ans="";
-        for(auto it : vp) {
-            for(int i=0; i<it.second; i++) {
-                ans += it.first;
+        string ans = "";
+        for(int i=n; i>=1; i--) {
+            for(int j=0; j<bucket[i].size(); j++) {
+                ans.append(i, bucket[i][j]);
             }
         }
 
         return ans;
+        // bucket sort
+        // TC : O(n)
+        /* nlogn or n for frequency + O(k) for filling bucket : k-disticnt elements + 2N looping over bucker and buliding ans string*/
+        // SC : O(n)
     }
 };
