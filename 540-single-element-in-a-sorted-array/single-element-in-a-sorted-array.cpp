@@ -1,10 +1,38 @@
 class Solution {
 public:
-    int singleNonDuplicate(vector<int>& nums) {
-        int xr = 0;
+    int singleNonDuplicate(vector<int>& arr) {
         
-        for(int i=0; i<nums.size(); i++) xr ^= nums[i];
+        int low = 0;
+        int high = arr.size()-1;
+        int mid = -1;
+        while(low<=high) {
+            mid = low + (high - low)/2;
 
-        return xr;
+            if(mid == arr.size() - 1) {
+                return arr[mid];
+            }
+
+            if(mid > 0 && mid < arr.size()-1 && arr[mid] != arr[mid-1] && arr[mid] != arr[mid+1]) {
+                return arr[mid];
+            }
+
+            if(mid%2 == 0) {
+                // even
+                if(arr[mid] == arr[mid+1]) {
+                    low = mid+1;
+                } else {
+                    high = mid-1;
+                }
+            } else {
+                // odd
+                if(arr[mid] == arr[mid+1]) {
+                    high = mid-1;
+                } else {
+                    low = mid+1;
+                }
+            }
+        }
+
+        return arr[mid];
     }
 };
