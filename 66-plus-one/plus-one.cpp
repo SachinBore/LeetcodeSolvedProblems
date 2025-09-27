@@ -1,38 +1,16 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        
-        int carry = 0;
-        for(int i=digits.size()-1; i>=0; i--) {
-
-            if(i==digits.size()-1) {
-                int num = digits[i] + 1;
-                if(num == 10) {
-                    carry = 1;
-                    digits[i] = 0;
-                } else digits[i] = num;
-
-                continue;
+        for (int i = digits.size() - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
             }
-
-            int val = digits[i];
-            if(carry != 0) {
-                val++;
-                carry = 0;
-            }
-
-            if(val == 10) {
-                carry = 1;
-                digits[i] = 0;
-            } else digits[i] = val;
+            digits[i] = 0;
         }
 
-        if(carry == 1) {
-            vector<int> ans = {1};
-            ans.insert(ans.end(), digits.begin(), digits.end());
-            return ans;
-        }
-
-        return digits;
+        vector<int> ans(digits.size()+1, 0);
+        ans[0]=1;
+        return ans;
     }
 };
