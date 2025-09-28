@@ -1,16 +1,23 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        long long left=0, right=x;
+        int low=1, high=INT_MAX;
+
         int ans;
-        while(left<=right) {
-            long long mid = left + (right-left)/2;
-            if(mid*mid <= x) {
+        while(low <= high) {
+            long long mid = low + (high - low)/2;
+
+            if(mid*mid == x) {
                 ans = mid;
-                left = mid+1;
-            } else right = mid-1;
+                break;
+            } else if(mid*mid < x) {
+                ans = mid;
+                low = mid+1;
+            } else {
+                high = mid-1;
+            }
         }
 
         return ans;
-    }
+    } 
 };
