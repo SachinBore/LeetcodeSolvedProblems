@@ -1,26 +1,28 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        int n = s.size();
+        int sz = s.size();
 
         map<char, int> smp;
         map<char, int> tmp;
-        bool ans = true;
-        for(int i=0; i<n; i++) {
-            if(smp.find(s[i]) != smp.end() && tmp.find(t[i]) != tmp.end()) {
-                if(smp[s[i]] != tmp[t[i]]) {
-                    ans = false;
-                    break;
+
+        for(int i=0; i<sz; i++) {
+            if(smp.find(s[i]) != smp.end()) {
+                if(tmp.find(t[i]) != tmp.end() && tmp[t[i]] == smp[s[i]]) {
+                    continue;
+                } else {
+                    return false;
                 }
-            } else if(smp.find(s[i]) == smp.end() && tmp.find(t[i]) == tmp.end()) {
-                smp[s[i]] = i+1;
-                tmp[t[i]] = i+1;
             } else {
-                ans = false;
-                break;
+                if(tmp.find(t[i]) == tmp.end()) {
+                    smp[s[i]] = i;
+                    tmp[t[i]] = i;
+                } else {
+                    return false;
+                }
             }
         }
 
-        return ans;
+        return true;
     }
 };
